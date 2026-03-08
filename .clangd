@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - -std=c++17
+    - -I/home/prlpnrpph512/Documents/c-cpp-lib/cclib_cpp/include
+    - -I/home/prlpnrpph512/Documents/c-cpp-lib/cclib_c/include
+    - -I/usr/include/c++/11
+    - -I/usr/include/x86_64-linux-gnu/c++/11

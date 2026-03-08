@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.14)
 add_library(cclib_cpp INTERFACE)
 add_library(cclib::cpp ALIAS cclib_cpp)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 target_include_directories(cclib_cpp INTERFACE 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
