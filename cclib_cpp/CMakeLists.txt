@@ -8,7 +8,6 @@ target_include_directories(cclib_cpp INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
-
 target_compile_features(cclib_cpp INTERFACE cxx_std_20)
 
 if(UNIX AND NOT APPLE)
