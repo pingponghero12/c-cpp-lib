@@ -13,5 +13,5 @@ target_include_directories(cclib_cpp INTERFACE
 target_compile_features(cclib_cpp INTERFACE cxx_std_20)
 
 if(UNIX AND NOT APPLE)
-    target_link_libraries(cclib_c INTERFACE rt)
+    target_link_libraries(cclib_cpp INTERFACE rt)
 endif()
