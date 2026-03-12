@@ -29,6 +29,52 @@ void insertion_sort(std::vector<T>& data) {
 }
 
 template <typename T>
+int recursive_binary_search_helper(std::vector<T>& A, int p, int r, T x) {
+    int q = (p + r) / 2;
+
+    if (p > r) return -1;
+    if (A[q] == x) return q;
+    else if(A[q] > x) return recursive_binary_search_helper(A, p, q-1, x);
+    else return recursive_binary_search_helper(A, q+1, r, x);
+}
+
+template <typename T>
+int recursive_binary_search(std::vector<T>& A, T x) { 
+    // We return the index
+    return recursive_binary_search_helper(A, 0, A.size() - 1, x);
+}
+
+template <typename T>
+void recursive_insertion_sort_helper(std::vector<T>& A, int n) {
+    if (n == 0) return;
+
+    recursive_insertion_sort_helper(A, n-1);
+
+    T key = A[n];
+
+    // Here size_t fucks up the program since we have j = -1 at some point after while.
+    int j = n-1;
+
+    while(j >= 0 && A[j] > key) {
+        // std::cout << "deb: " << j << " " << data[j] << " " << key << std::endl;
+        A[j+1] = A[j];
+
+        j--;
+    }
+
+    A[j+1] = key;
+
+    return;
+}
+
+template <typename T>
+void recursive_insertion_sort(std::vector<T>& A) {
+    size_t n = A.size();
+
+    recursive_insertion_sort_helper(A, n-1);
+}
+
+template <typename T>
 void selection_sort(std::vector<T>& A) {
     int n = A.size();
 
@@ -104,8 +150,27 @@ void merge_sort(std::vector<T>& A) {
     merge_sort_helper(A, 0, A.size() -1);
 }
 
+template <typename T>
+bool find_if_two_sum_to_x(std::vector<T>& A, T x) {
+    size_t n = A.size();
+    std::vector<T> Acopy(A);
+    std::sort(Acopy.begin(), Acopy.end());
 
+    for (int i = 0; i < n; i++) {
+        if (Acopy[i] == x/2 && x%2 == 0) {
+            if (i != n-1 && Acopy[i+1] == Acopy[i]) {
+                return true;
+            }
+            else if (i == n-1) return false;
+        }
 
+        if(int dupa = recursive_binary_search(Acopy, x-Acopy[i]) >= 0) {
+
+            return true;
+        }
+    }
+    return false;
+}
 
 int main() {
     cclib::cpp::hello();
@@ -117,11 +182,13 @@ int main() {
     std::cout << std::endl;
 
     //insertion_sort(test1);
-    merge_sort(test1);
+    //merge_sort(test1);
+    recursive_insertion_sort(test1);
 
-    std::cout << "mer" << std::endl;
+    std::cout << "rec" << std::endl;
     for (const auto& i : test1) std::cout << i << " ";
     std::cout << std::endl;
 
+    std::cout << "find if " << find_if_two_sum_to_x(test1, 10) << std::endl;
 
 }
