@@ -55,21 +55,8 @@ void merge(std::vector<T>& A, int p, int q, int r) {
     std::vector<T> L(nl);
     std::vector<T> R(nr);
 
-    std::cout << "Before" << std::endl;
-
-    for (const auto i : L) std::cout << i << " ";
-    std::cout << std::endl;
-    for (const auto i : R) std::cout << i << " ";
-    std::cout << std::endl;
-
     std::copy(A.begin() + p, A.begin() + q + 1, L.begin()); // end needs to be A.begin + n + 1
     std::copy(A.begin() + q+1, A.begin() + r + 1, R.begin());
-
-    std::cout << "After" << std::endl;
-    for (const auto i : L) std::cout << i << " ";
-    std::cout << std::endl;
-    for (const auto i : R) std::cout << i << " ";
-    std::cout << std::endl;
 
     int il = 0;
     int ir = 0;
@@ -110,10 +97,6 @@ void merge_sort_helper(std::vector<T>& A, int p, int r) {
     merge_sort_helper(A, q+1, r);
 
     merge(A, p, q, r);
-    
-    std::cout << "skibid" << std::endl;
-    for (const auto& i : A) std::cout << i << " ";
-    std::cout << std::endl;
 }
 
 template <typename T>
